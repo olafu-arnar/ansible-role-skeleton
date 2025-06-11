@@ -98,7 +98,7 @@ init-role:
 	ansible-galaxy init $(ROLE_NAME) \
 		--role-skeleton $(SKELETON_REPO) \
 		--init-path $(ROLE_PATH)
-	@echo "✔️ Role '$(ROLE_NAME)' created at $(ROLE_PATH)/$(ROLE_NAME)"
+	@echo "Role '$(ROLE_NAME)' created at $(ROLE_PATH)/$(ROLE_NAME)"
 ```
 
 Usage:
