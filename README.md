@@ -89,16 +89,19 @@ ansible-galaxy init myrole --role-skeleton ~/ansible-role-skeleton/ --init-path 
 Place this `Justfile` in your Ansible project root or update the existing one:
 
 ```makefile
-ROLE_NAME ?= example_role
-ROLE_PATH ?= ./roles
-SKELETON_REPO ?= https://gitlab.company.com/devops/ansible-role-skeleton.git
+# Flexible version (requires all inputs)
+init-role ROLE_NAME ROLE_PATH SKELETON_REPO:
+    ansible-galaxy init {{ROLE_NAME}} \
+      --role-skeleton {{SKELETON_REPO}} \
+      --init-path {{ROLE_PATH}}
+    echo "Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
 
-# Generate a new role with skeleton
-init-role:
-	ansible-galaxy init $(ROLE_NAME) \
-		--role-skeleton $(SKELETON_REPO) \
-		--init-path $(ROLE_PATH)
-	@echo "Role '$(ROLE_NAME)' created at $(ROLE_PATH)/$(ROLE_NAME)"
+# Default-path version (hardcoded for project structure)
+init-role-default ROLE_NAME:
+    ansible-galaxy init {{ROLE_NAME}} \
+      --role-skeleton ~/ansible-role-skeleton \
+      --init-path ./roles
+    echo "Role '{{ROLE_NAME}}' created in ./roles/"
 ```
 
 Usage:
