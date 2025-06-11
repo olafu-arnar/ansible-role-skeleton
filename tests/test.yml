@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - name: Test placeholder
+      debug:
+        msg: Test successful
