@@ -94,14 +94,14 @@ init-role ROLE_NAME ROLE_PATH SKELETON_REPO:
     ansible-galaxy init {{ROLE_NAME}} \
       --role-skeleton {{SKELETON_REPO}} \
       --init-path {{ROLE_PATH}}
-    echo "✔️ Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
+    echo "Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
 
 # Create role using defaults
 init-role-default ROLE_NAME:
     ansible-galaxy init {{ROLE_NAME}} \
       --role-skeleton ~/ansible-role-skeleton \
       --init-path ./roles
-    echo "✔️ Role '{{ROLE_NAME}}' created in ./roles/"
+    echo "Role '{{ROLE_NAME}}' created in ./roles/"
 ```
 
 Usage:
