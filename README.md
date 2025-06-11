@@ -48,7 +48,7 @@ myrole/
 ### Role Metadata Note for Contributors
 
 Before uploading a role to your project repository:
-- Delete **unused** folders like `molecule/`, `tests/`, `templates/`, or `files/` if not applicable.
+- Delete **unused** folders like `molecule/`, `tests/`, `templates/`, `vars/` or `files/` if not applicable.
 - Delete `.yamllint`, `.ansible-lint` if the project already has root-level linting configs.
 - Delete `README.md.j2` if the rendered README.md is already present or not needed.
 - Clean and trim down the content according to the role's actual purpose.
@@ -90,27 +90,18 @@ Place this `Justfile` in your Ansible project root or update the existing one:
 
 ```makefile
 # Create role using all arguments
-init-role ROLE_NAME ROLE_PATH SKELETON_REPO:
-    ansible-galaxy init {{ROLE_NAME}} \
-      --role-skeleton {{SKELETON_REPO}} \
-      --init-path {{ROLE_PATH}}
-    echo "Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
-
-# Create role using defaults
-init-role-default ROLE_NAME:
+init-role ROLE_NAME  *FLAGS: 
     ansible-galaxy init {{ROLE_NAME}} \
       --role-skeleton ~/ansible-role-skeleton \
-      --init-path ./roles
-    echo "Role '{{ROLE_NAME}}' created in ./roles/"
-```
+      --init-path ./ansible/roles \
+      {{FLAGS}}
+    echo "Role '{{ROLE_NAME}}' created at ./ansible/roles/{{ROLE_NAME}}"
 
 Usage:
 
 ```bash
-# With full control
-just init-role harden_os ./roles ~/ansible-role-skeleton
-#With defaults (preferred for daily use)
-just init-role-default harden_os
+just init-role harden_os
+just init-role harden_os --force
 ```
 
 ##  Role Skeleton Structuree What's Included
