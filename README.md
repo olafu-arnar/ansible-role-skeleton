@@ -107,6 +107,9 @@ init-role-default ROLE_NAME:
 Usage:
 
 ```bash
+# With full control
+just init-role ROLE_NAME=myrole ROLE_PATH=./roles SKELETON_REPO=~/ansible-role-skeleton
+#With defaults (preferred for daily use)
 just init-role ROLE_NAME=harden_os
 ```
 
