@@ -89,28 +89,28 @@ ansible-galaxy init myrole --role-skeleton ~/ansible-role-skeleton/ --init-path 
 Place this `Justfile` in your Ansible project root or update the existing one:
 
 ```makefile
-# Flexible version (requires all inputs)
+# Create role using all arguments
 init-role ROLE_NAME ROLE_PATH SKELETON_REPO:
     ansible-galaxy init {{ROLE_NAME}} \
       --role-skeleton {{SKELETON_REPO}} \
       --init-path {{ROLE_PATH}}
-    echo "Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
+    echo "✔️ Role '{{ROLE_NAME}}' created at {{ROLE_PATH}}/{{ROLE_NAME}}"
 
-# Default-path version (hardcoded for project structure)
+# Create role using defaults
 init-role-default ROLE_NAME:
     ansible-galaxy init {{ROLE_NAME}} \
       --role-skeleton ~/ansible-role-skeleton \
       --init-path ./roles
-    echo "Role '{{ROLE_NAME}}' created in ./roles/"
+    echo "✔️ Role '{{ROLE_NAME}}' created in ./roles/"
 ```
 
 Usage:
 
 ```bash
 # With full control
-just init-role ROLE_NAME=myrole ROLE_PATH=./roles SKELETON_REPO=~/ansible-role-skeleton
+just init-role harden_os ./roles ~/ansible-role-skeleton
 #With defaults (preferred for daily use)
-just init-role ROLE_NAME=harden_os
+just init-role-default harden_os
 ```
 
 ##  Role Skeleton Structuree What's Included
